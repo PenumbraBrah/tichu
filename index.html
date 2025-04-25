@@ -160,8 +160,91 @@ h1 {
   background-color: #444;
 }
 
-  </style>
+</style>
 
+<body class="">
+  <button id="dark-mode-toggle">🕶</button>
+<div class="container">
+  <h1>Tichu Scoring</h1>
+
+  <div class="scores">
+    <div class="score">
+      <h2>Score: <span id="team1-score">395</span></h2>
+    </div>
+    <div class="score">
+      <h2>Score: <span id="team2-score">205</span></h2>
+    </div>
+  </div>
+  
+  <div class="teams">
+    <div class="team" id="team1">
+      <h2>Team Serpent</h2>
+      <div class="slider-container">
+        <input type="range" id="team1-slider" min="-25" max="125" step="5" value="50">
+        <div class="points-display" id="team1-points-display">Points: 50</div>
+      </div>
+      <div class="toggle-buttons">
+        <button id="team1-tichu" class="toggle-tichu">Tichu</button>
+        <button id="team1-grand-tichu" class="toggle-grand-tichu">Grand Tichu  </button>
+        <button id="team1-out-first" class="toggle-buttons toggle-sweeper">Sweep</button>
+      </div>
+    </div>
+
+    <div class="team" id="team2">
+      <h2>Team Tiger</h2>
+      <div class="slider-container">
+        <input type="range" id="team2-slider" min="-25" max="125" step="5" value="50">
+        <div class="points-display" id="team2-points-display">Points: 50</div>
+      </div>
+      <div class="toggle-buttons">
+        <button id="team2-tichu" class="toggle-tichu">Tichu</button>
+        <button id="team2-grand-tichu" class="toggle-grand-tichu">Grand Tichu</button>
+        <button id="team2-out-first" class="toggle-buttons toggle-sweeper">Sweep</button>
+      </div>
+    </div>
+  </div>
+  
+  <button id="submit-round">Submit Round</button>
+
+  <div class="history">
+    <h2>Round History</h2>
+    <table>
+      <thead>
+        <tr>
+          <th>Round</th>
+          <th>Team Serpent</th>
+          <th>Team Tiger</th>
+          <th>Details</th>
+        </tr>
+      </thead>
+      <tbody id="history-body">
+      
+                <tr>
+                    <td>1</td>
+                    <td>300</td>
+                    <td>0</td>
+                    <td>🐍 Sweep; 🐍 Tichu - Won</td>
+                </tr>
+            
+                <tr>
+                    <td>2</td>
+                    <td>20</td>
+                    <td>80</td>
+                    <td></td>
+                </tr>
+            
+                <tr>
+                    <td>3</td>
+                    <td>75</td>
+                    <td>125</td>
+                    <td>🐅 Tichu - Won</td>
+                </tr>
+            </tbody>
+    </table>
+  <button id="reset-game" class="reset-button">Reset Game</button>
+  </div>
+</div>
+</body>
 <script>
 let roundNumber = 1;
 let team1Total = 0;
@@ -390,87 +473,4 @@ document
   });
 
 </script>
-
-<body class="">
-  <button id="dark-mode-toggle">🕶</button>
-<div class="container">
-  <h1>Tichu Scoring</h1>
-
-  <div class="scores">
-    <div class="score">
-      <h2>Score: <span id="team1-score">395</span></h2>
-    </div>
-    <div class="score">
-      <h2>Score: <span id="team2-score">205</span></h2>
-    </div>
-  </div>
-  
-  <div class="teams">
-    <div class="team" id="team1">
-      <h2>Team Serpent</h2>
-      <div class="slider-container">
-        <input type="range" id="team1-slider" min="-25" max="125" step="5" value="50">
-        <div class="points-display" id="team1-points-display">Points: 50</div>
-      </div>
-      <div class="toggle-buttons">
-        <button id="team1-tichu" class="toggle-tichu">Tichu</button>
-        <button id="team1-grand-tichu" class="toggle-grand-tichu">Grand Tichu  </button>
-        <button id="team1-out-first" class="toggle-buttons toggle-sweeper">Sweep</button>
-      </div>
-    </div>
-
-    <div class="team" id="team2">
-      <h2>Team Tiger</h2>
-      <div class="slider-container">
-        <input type="range" id="team2-slider" min="-25" max="125" step="5" value="50">
-        <div class="points-display" id="team2-points-display">Points: 50</div>
-      </div>
-      <div class="toggle-buttons">
-        <button id="team2-tichu" class="toggle-tichu">Tichu</button>
-        <button id="team2-grand-tichu" class="toggle-grand-tichu">Grand Tichu</button>
-        <button id="team2-out-first" class="toggle-buttons toggle-sweeper">Sweep</button>
-      </div>
-    </div>
-  </div>
-  
-  <button id="submit-round">Submit Round</button>
-
-  <div class="history">
-    <h2>Round History</h2>
-    <table>
-      <thead>
-        <tr>
-          <th>Round</th>
-          <th>Team Serpent</th>
-          <th>Team Tiger</th>
-          <th>Details</th>
-        </tr>
-      </thead>
-      <tbody id="history-body">
-      
-                <tr>
-                    <td>1</td>
-                    <td>300</td>
-                    <td>0</td>
-                    <td>🐍 Sweep; 🐍 Tichu - Won</td>
-                </tr>
-            
-                <tr>
-                    <td>2</td>
-                    <td>20</td>
-                    <td>80</td>
-                    <td></td>
-                </tr>
-            
-                <tr>
-                    <td>3</td>
-                    <td>75</td>
-                    <td>125</td>
-                    <td>🐅 Tichu - Won</td>
-                </tr>
-            </tbody>
-    </table>
-  <button id="reset-game" class="reset-button">Reset Game</button>
-  </div>
-</div>
-</body></html>
+</html>
