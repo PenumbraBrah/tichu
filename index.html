@@ -3,468 +3,70 @@
 
   <meta charset="UTF-8">
   <title>Tichu Scorekeeper</title>
-
   <meta name="robots" content="noindex">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Caveat:wght@400..700&display=swap" rel="stylesheet">
 
- <style>
-body {
-  font-family: Arial, sans-serif;
-  margin: 20px;
-  padding: 0;
-  background-color: #f4f4f4;
-}
-h1 {
-  text-align: center;
-}
-.container {
-  max-width: 800px;
-  margin: auto;
-  background: white;
-  padding: 20px;
-  border-radius: 10px;
-  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
-}
-.teams, .scores {
-  display: flex;
-  justify-content: space-between;
-}
-.team, .score {
-  background: #f9f9f9;
-  padding: 10px;
-  border-radius: 10px;
-  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
-}
-.team h2, .score h2 {
-  text-align: center;
-}
-.team .points-container {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-}
-.team .points-display {
-  margin-top: 10px;
-  font-size: 18px;
-}
-.toggle-buttons {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
-}
-.toggle-buttons button {
-  margin: 5px;
-  padding: 10px 15px;
-  background-color: #007bff;
-  color: white;
-  border: none;
-  border-radius: 5px;
-  cursor: pointer;
-}
-.toggle-buttons button.active-won,
-.toggle-buttons button.active {
-  background-color: #28a745;
-}
-.toggle-buttons button.active-lost {
-  background-color: #dc3545;
-}
-.score {
-  background: transparent;
-  margin-top: -15px;
-  margin-left: 1em;
-  margin-right: 1em;
-  box-shadow: unset;
-}
-.history {
-  margin-top: 20px;
-}
-.history table {
-  width: 100%;
-  border-collapse: collapse;
-}
-.history table,
-.history th,
-.history td {
-  border: 1px solid #ddd;
-}
-.history th,
-.history td {
-  padding: 10px;
-  text-align: center;
-}
-.reset-button {
-  margin: 20px auto;
-  padding: 10px;
-  background-color: #dc3545;
-  color: white;
-  border: none;
-  border-radius: 5px;
-  cursor: pointer;
-}
-#submit-round {
-  display: block;
-  width: 100%;
-  margin: 20px auto;
-  padding: 10px;
-  background-color: #007bff;
-  color: white;
-  border: none;
-  border-radius: 5px;
-  cursor: pointer;
-}
-
-/* Dark Mode Styles */
-#dark-mode-toggle {
-  width: 40px;
-  height: 40px;
-  font-size: 24px;
-  background: #ccc;
-  border: none;
-  border-radius: 5px;
-}
-
-.dark-mode {
-  background-color: #444;
-  color: #ffffff;
-}
-
-.dark-mode .container {
-  background: #1e1e1e;
-  box-shadow: 0 2px 5px rgba(255, 255, 255, 0.1);
-}
-
-.dark-mode .team {
-  background: #2a2a2a;
-  box-shadow: 0 1px 3px rgba(255, 255, 255, 0.1);
-}
-
-.dark-mode .toggle-buttons button {
-  background-color: #444;
-  color: #fff;
-}
-
-.dark-mode .toggle-buttons button.active-won,
-.dark-mode .toggle-buttons button.active {
-  background-color: #28a745;
-}
-
-.dark-mode .toggle-buttons button.active-lost {
-  background-color: #dc3545;
-}
-
-.dark-mode .reset-button,
-.dark-mode #submit-round {
-  background-color: #444;
-}
-
-.teams {
-  display: flex;
-  flex-wrap: wrap;
-  flex-direction: row;
-}
-
-.team, .slider-container {
-  box-sizing: border-box;
-  padding: 20px;
-}
-.slider-container input[type="range"] {
-  width: 100%;
-}
-
-#team1, #team2 {
-  width: 50%;
-  text-align: center;
-}
-
-#team1 {
-  order: 2;
-}
-
-.slider-container {
-  width: 100%;
-  order: 3;
-  text-align: center;
-}
-</style>
-
-<body class="">
-	<button id="dark-mode-toggle">🕶</button>
-<div class="container">
-  <h1>Tichu Scoring</h1>
-
-  <div class="scores">
-    <div class="score">
-      <h2>Score: <span id="team1-score">0</span></h2>
-    </div>
-    <div class="score">
-      <h2>Score: <span id="team2-score">0</span></h2>
-    </div>
-  </div>
-
-  <div class="teams">
-    <div class="team" id="team1">
-      <h2>Team Tiger</h2>
-      <div class="points-container">
-        <div class="points-display" id="team1-points-display">Points: 50</div>
+  <body>
+    <button id="dark-mode-toggle">🕶️</button>
+    <h1>Tichu Scorekeeping</h1>
+    <div class="cards">
+      <div id="team-tiger" class="team">
+        <div class="card-container">
+          <img src="https://penumbrabrah.github.io/tichu/tiger-landscape.png"></img>
+          <div id="tiger-score" class="score-display"></div>
+          <div id="tiger-input-score" class="input-score">50</div>
+        </div>
+        <div class="button-container">
+          <button id="tiger-tichu" class="tab three-way-toggle">Tichu</button>
+          <button id="tiger-grand" class="tab three-way-toggle">Grand</button>
+          <button id="tiger-sweep" class="tab two-way-toggle">Sweep</button>
+        </div>
       </div>
-      <div class="toggle-buttons">
-        <button id="team1-tichu" class="toggle-tichu">Tichu</button>
-        <button id="team1-grand-tichu" class="toggle-grand-tichu">Grand Tichu</button>
-        <button id="team1-out-first">Sweep</button>
+      <div id="team-serpent" class="team">
+        <div class="card-container">
+          <img src="https://penumbrabrah.github.io/tichu/serpent-landscape.png"></img>
+          <div id="serpent-score" class="score-display"></div>
+          <div id="serpent-input-score" class="input-score">50</div>
+        </div>
+        <div class="button-container">
+          <button id="serpent-tichu" class="tab three-way-toggle">Tichu</button>
+          <button id="serpent-grand" class="tab three-way-toggle">Grand</button>
+          <button id="serpent-sweep" class="tab two-way-toggle">Sweep</button>
+        </div>
       </div>
     </div>
-
-    <div class="slider-container">
-      <input type="range" id="scoring-slider" min="-25" max="125" step="5" value="50">
+    <div class="scoring-tiles">
+      🐅
+      <button class="tile" onclick="addPoints(100)">100</button>
+      <button class="tile" onclick="addPoints(50)">50</button>
+      <button class="tile" onclick="addPoints(25)">25</button>
+      <button class="tile" onclick="addPoints(10)">10</button>
+      <button class="tile" onclick="addPoints(5)">5</button>
+      <button class="tile" onclick="addPoints(-5)">5</button>
+      <button class="tile" onclick="addPoints(-10)">10</button>
+      <button class="tile" onclick="addPoints(-25)">25</button>
+      <button class="tile" onclick="addPoints(-50)">50</button>
+      <button class="tile" onclick="addPoints(-100)">100</button>
+      🐍
     </div>
-
-    <div class="team" id="team2">
-      <h2>Team Phoenix</h2>
-      <div class="points-container">
-        <div class="points-display" id="team2-points-display">Points: 50</div>
-      </div>
-      <div class="toggle-buttons">
-        <button id="team2-tichu" class="toggle-tichu">Tichu</button>
-        <button id="team2-grand-tichu" class="toggle-grand-tichu">Grand Tichu</button>
-        <button id="team2-out-first">Sweep</button>
-      </div>
+    <button id="submit-round" class="tab">Submit Round</button>
+    <div class="history">
+      <h2>Round History</h2>
+      <table>
+        <thead>
+          <tr>
+            <th>#</th>
+            <th>Tiger</th>
+            <th>Serpent</th>
+            <th>Details</th>
+          </tr>
+        </thead>
+        <tbody id="history-body">
+        </tbody>
+      </table>
+      <button id="reset-game" class="tab reset-button">Reset Game</button>
     </div>
-  </div>
-
-  <button id="submit-round">Submit Round</button>
-  <button id="reset-game" class="reset-button">Reset Game</button>
-
-  <div class="history">
-    <h2>Round History</h2>
-    <table>
-      <thead>
-        <tr>
-          <th>Round</th>
-          <th>Team Serpent Points</th>
-          <th>Team Tiger Points</th>
-          <th>Details</th>
-        </tr>
-      </thead>
-      <tbody id="history-body">
-      </tbody>
-    </table>
-  </div>
-</div>
-</body>
-<script>
-let roundNumber = 1;
-let team1Total = 0;
-let team2Total = 0;
-const historyBody = document.getElementById("history-body");
-
-const scoringSlider = document.getElementById("scoring-slider");
-const team1PointsDisplay = document.getElementById("team1-points-display");
-const team2PointsDisplay = document.getElementById("team2-points-display");
-
-const toggleTichuButtons = document.querySelectorAll(".toggle-tichu");
-const toggleGrandTichuButtons = document.querySelectorAll(
-  ".toggle-grand-tichu"
-);
-const toggleSweepButtons = document.querySelectorAll(".toggle-sweeper");
-
-scoringSlider.addEventListener("input", () => {
-  const team1Points = parseInt(scoringSlider.value);
-  team1PointsDisplay.textContent = `Points: ${team1Points}`;
-  team2PointsDisplay.textContent = `Points: ${100 - team1Points}`;
-});
-
-function toggleState(button) {
-  if (button.classList.contains("active-won")) {
-    button.classList.remove("active-won");
-    button.classList.add("active-lost");
-    button.textContent = button.textContent.replace("Won", "Lost");
-  } else if (button.classList.contains("active-lost")) {
-    button.classList.remove("active-lost");
-    button.textContent = button.textContent.replace("Lost", "");
-  } else {
-    button.classList.add("active-won");
-    button.textContent += " Won";
-  }
-}
-
-function toggleSelected(button) {
-  if (button.classList.contains("active")) {
-    button.classList.remove("active");
-  } else {
-    button.classList.add("active");
-  }
-}
-
-toggleTichuButtons.forEach((button) => {
-  button.addEventListener("click", () => toggleState(button));
-});
-
-toggleGrandTichuButtons.forEach((button) => {
-  button.addEventListener("click", () => toggleState(button));
-});
-
-toggleSweepButtons.forEach((button) => {
-  button.addEventListener("click", () => toggleSelected(button));
-});
-
-document.getElementById("submit-round").addEventListener("click", () => {
-  const team1Points = parseInt(scoringSlider.value);
-  const team2Points = parseInt(100 - scoringSlider.value);
-
-  let team1Score = team1Points;
-  let team2Score = team2Points;
-  let details = [];
-
-  if (document.getElementById("team1-out-first").classList.contains("active")) {
-    team1Score = 200;
-    team2Score = 0;
-    details.push("🐅 Sweep");
-  }
-
-  if (document.getElementById("team2-out-first").classList.contains("active")) {
-    team1Score = 0;
-    team2Score = 200;
-    details.push("🐍 Sweep");
-  }
-
-  if (document.getElementById("team1-tichu").classList.contains("active-won")) {
-    team1Score += 100;
-    details.push("🐅 Tichu - Won");
-  } else if (
-    document.getElementById("team1-tichu").classList.contains("active-lost")
-  ) {
-    team1Score -= 100;
-    details.push("🐅 Tichu - Lost");
-  }
-
-  if (document.getElementById("team2-tichu").classList.contains("active-won")) {
-    team2Score += 100;
-    details.push("🐍 Tichu - Won");
-  } else if (
-    document.getElementById("team2-tichu").classList.contains("active-lost")
-  ) {
-    team2Score -= 100;
-    details.push("🐍 Tichu - Lost");
-  }
-
-  if (
-    document
-      .getElementById("team1-grand-tichu")
-      .classList.contains("active-won")
-  ) {
-    team1Score += 200;
-    details.push("🐅 Grand Tichu - Won");
-  } else if (
-    document
-      .getElementById("team1-grand-tichu")
-      .classList.contains("active-lost")
-  ) {
-    team1Score -= 200;
-    details.push("🐅 Grand Tichu - Lost");
-  }
-
-  if (
-    document
-      .getElementById("team2-grand-tichu")
-      .classList.contains("active-won")
-  ) {
-    team2Score += 200;
-    details.push("🐍 Grand Tichu - Won");
-  } else if (
-    document
-      .getElementById("team2-grand-tichu")
-      .classList.contains("active-lost")
-  ) {
-    team2Score -= 200;
-    details.push("🐍 Grand Tichu - Lost");
-  }
-
-  historyBody.innerHTML += `
-                <tr>
-                    <td>${roundNumber}</td>
-                    <td>${team2Score}</td>
-                    <td>${team1Score}</td>
-                    <td>${details.join("; ")}</td>
-                </tr>
-            `;
-
-  team1Total += team1Score;
-  team2Total += team2Score;
-  saveHistory();
-
-  document.getElementById("team1-score").textContent = team1Total;
-  document.getElementById("team2-score").textContent = team2Total;
-  roundNumber++;
-
-  document.querySelectorAll(".toggle-buttons button").forEach((button) => {
-    button.classList.remove("active-won", "active-lost", "active");
-    button.textContent = button.textContent
-      .replace(" Won", "")
-      .replace(" Lost", "");
-  });
-
-  scoringSlider.value = "50";
-  team1PointsDisplay.textContent = "Points: 50";
-  team2PointsDisplay.textContent = "Points: 50";
-});
-
-function updateScores() {
-  // Update the total score displays
-  document.getElementById("team1-score").textContent = team1Total;
-  document.getElementById("team2-score").textContent = team2Total;
-}
-
-document.getElementById("reset-game").addEventListener("click", () => {
-  roundNumber = 1;
-  team1Total = team2Total = 0;
-  historyBody.innerHTML = "";
-  document.querySelectorAll(".toggle-buttons button").forEach((button) => {
-    button.classList.remove("active-won", "active-lost", "active");
-    button.textContent = button.textContent
-      .replace(" Won", "")
-      .replace(" Lost", "");
-  });
-  scoringSlider.value = "50";
-  team1PointsDisplay.textContent = "Points: 50";
-  team2PointsDisplay.textContent = "Points: 50";
-  updateScores();
-  saveHistory();
-});
-
-function saveHistory() {
-  const gameData = {
-    history: historyBody.innerHTML,
-    team1Total: team1Total,
-    team2Total: team2Total
-  };
-
-  document.cookie = `tichuHistory=${encodeURIComponent(
-    JSON.stringify(gameData)
-  )}; path=/`;
-}
-
-function loadHistory() {
-  const cookies = document.cookie.split("; ");
-  const historyCookie = cookies.find((row) => row.startsWith("tichuHistory="));
-  if (historyCookie) {
-    const gameData = JSON.parse(
-      decodeURIComponent(historyCookie.split("=")[1])
-    );
-    historyBody.innerHTML = gameData.history;
-    team1Total = gameData.team1Total;
-    team2Total = gameData.team2Total;
-    roundNumber = historyBody.rows.length + 1;
-
-    updateScores();
-  }
-}
-
-loadHistory();
-
-document
-  .getElementById("dark-mode-toggle")
-  .addEventListener("click", function () {
-    document.body.classList.toggle("dark-mode");
-  });
-
-</script>
+  </body>
 </html>
